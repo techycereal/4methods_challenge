@@ -14,23 +14,11 @@ export default function JournalApp() {
   }, []);
 
   const fetchEntries = async () => {
-    const res = await fetch(JOURNAL_API);
-    const data = await res.json();
-    setEntries(data);
+    
   };
 
   const addEntry = async () => {
-    if (!entry.trim()) return;
-    const today = new Date().toISOString().split('T')[0];
-    const res = await fetch(JOURNAL_API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ entry, mood, date: today })
-    });
-    const newEntry = await res.json();
-    setEntries([...entries, newEntry]);
-    setEntry('');
-    setMood('Happy');
+    
   };
 
   const startEditing = (entry) => {
@@ -39,15 +27,7 @@ export default function JournalApp() {
   };
 
   const updateEntry = async (id) => {
-    const res = await fetch(`${JOURNAL_API}/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(editData)
-    });
-    const updated = await res.json();
-    setEntries(entries.map(e => e.id === id ? updated : e));
-    setEditingId(null);
-    setEditData({ entry: '', mood: '', date: '' });
+    
   };
 
   const cancelEditing = () => {
@@ -56,8 +36,7 @@ export default function JournalApp() {
   };
 
   const deleteEntry = async (id) => {
-    await fetch(`${JOURNAL_API}/${id}`, { method: 'DELETE' });
-    setEntries(entries.filter(e => e.id !== id));
+    
   };
 
   const getMoodColor = (mood) => {

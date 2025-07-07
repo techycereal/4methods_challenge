@@ -15,32 +15,15 @@ export default function App() {
   }, []);
 
   const fetchTodos = async () => {
-    const res = await fetch(TODO_API);
-    const data = await res.json();
-    setTodos(data);
+    
   };
 
   const addTodo = async () => {
-    if (!task.trim()) return;
-    const res = await fetch(TODO_API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ task, priority, completed: false })
-    });
-    const newTodo = await res.json();
-    setTodos([...todos, newTodo]);
-    setTask('');
-    setPriority('Medium');
+    
   };
 
   const toggleComplete = async (id, current) => {
-    const res = await fetch(`${TODO_API}/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ completed: !current })
-    });
-    const updated = await res.json();
-    setTodos(todos.map(todo => (todo.id === id ? updated : todo)));
+    
   };
 
   const startEditing = (id, currentTask, currentPriority) => {
@@ -50,16 +33,7 @@ export default function App() {
   };
 
   const updateTodo = async (id) => {
-    const res = await fetch(`${TODO_API}/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ task: editTask, priority: editPriority })
-    });
-    const updated = await res.json();
-    setTodos(todos.map(todo => todo.id === id ? updated : todo));
-    setEditingId(null);
-    setEditTask('');
-    setEditPriority('Medium');
+    
   };
 
   const cancelEditing = () => {
@@ -69,8 +43,7 @@ export default function App() {
   };
 
   const deleteTodo = async (id) => {
-    await fetch(`${TODO_API}/${id}`, { method: 'DELETE' });
-    setTodos(todos.filter(todo => todo.id !== id));
+    
   };
 
   const getPriorityBadge = (level) => {

@@ -15,23 +15,11 @@ export default function RecipeApp() {
   }, []);
 
   const fetchRecipes = async () => {
-    const res = await fetch(RECIPE_API);
-    const data = await res.json();
-    setRecipes(data);
+    
   };
 
   const addRecipe = async () => {
-    if (!name.trim()) return;
-    const res = await fetch(RECIPE_API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, category, ingredients })
-    });
-    const newRecipe = await res.json();
-    setRecipes([...recipes, newRecipe]);
-    setName('');
-    setCategory('Dinner');
-    setIngredients('');
+    
   };
 
   const startEditing = (recipe) => {
@@ -40,14 +28,7 @@ export default function RecipeApp() {
   };
 
   const updateRecipe = async (id) => {
-    const res = await fetch(`${RECIPE_API}/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(editData)
-    });
-    const updated = await res.json();
-    setRecipes(recipes.map(recipe => recipe.id === id ? updated : recipe));
-    setEditingId(null);
+    
   };
 
   const cancelEditing = () => {
@@ -56,8 +37,7 @@ export default function RecipeApp() {
   };
 
   const deleteRecipe = async (id) => {
-    await fetch(`${RECIPE_API}/${id}`, { method: 'DELETE' });
-    setRecipes(recipes.filter(recipe => recipe.id !== id));
+    
   };
 
   const getCategoryBadge = (category) => {
